@@ -80,6 +80,14 @@ async function run() {
       res.send(result);
     })
 
+    // Getting Calorie for an user
+    app.get('/calories/:email', async (req, res) => {
+      const email = req.params.email
+      const query = { email: email }
+      const yourCalorie = await calorieCollection.find(query).toArray()
+      res.send(yourCalorie)
+    })
+
     // Calorie End
 
     //console.log(`A document was inserted with the _id: ${result.insertedId}`);

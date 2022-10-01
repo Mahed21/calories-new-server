@@ -82,10 +82,12 @@ async function run() {
 
     // Getting Calorie for an user
     app.get('/calories/:email', async (req, res) => {
-      const email = req.params.email
-      const query = { email: email }
-      const yourCalorie = await calorieCollection.find(query).toArray()
-      res.send(yourCalorie)
+      const date = req.query.date;
+      const email = req.params.email;
+      const query = { email: email };
+      const options = { date: date };
+      const yourCalorie = await calorieCollection.find(query, options).toArray();
+      res.send(yourCalorie);
     })
 
     // Calorie End
